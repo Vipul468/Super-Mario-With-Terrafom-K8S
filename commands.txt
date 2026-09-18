@@ -1,0 +1,42 @@
+# Super Mario Kubernetes + Terraform Commands
+
+# Start Minikube
+minikube start --driver=docker
+
+# Verify cluster
+kubectl get nodes
+
+# Verify Kubernetes context
+kubectl config current-context
+
+# Terraform
+cd terraform
+terraform init
+terraform fmt
+terraform validate
+terraform plan
+terraform apply
+
+# Kubernetes verification
+kubectl get namespace
+kubectl get pods -n super-mario
+kubectl get deployment -n super-mario
+kubectl get service -n super-mario
+
+# Open application
+minikube service super-mario -n super-mario
+
+# URL only
+minikube service super-mario -n super-mario --url
+
+# Logs
+kubectl logs -n super-mario -l app=super-mario
+
+# Describe
+kubectl describe deployment super-mario -n super-mario
+
+# Destroy Terraform resources
+terraform destroy
+
+# Stop Minikube
+minikube stop
